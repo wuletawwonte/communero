@@ -1,0 +1,8 @@
+{
+  "name": "Simplero take home project",
+  "image": "heroku/ruby",
+  "stack": "heroku-20",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
