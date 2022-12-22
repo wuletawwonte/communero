@@ -1,5 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+valid:
+  content: MyText
+  comment: two
+  user: one
+
 one:
   content: MyText
   comment: one
