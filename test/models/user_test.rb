@@ -3,34 +3,39 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(first_name: "Wuletaw", last_name: "Wonte", email: "wuletaw@gmail.com", password: "12345678")
+    @user_one = users(:one)
+    @valid_user = users(:valid)
   end
 
   test "valid user" do
-    assert @user.valid?
+    assert @valid_user.valid?
   end
 
   test "invalid without first_name" do
-    @user.first_name = nil
-    refute @user.valid?
-    assert_not_nil @user.errors[:first_name]
+    @valid_user.first_name = nil
+    refute @valid_user.valid?
+    assert_not_nil @valid_user.errors[:first_name]
   end
 
   test "invalid without last_name" do
-    @user.last_name = nil
-    refute @user.valid?
-    assert_not_nil @user.errors[:last_name]
+    @valid_user.last_name = nil
+    refute @valid_user.valid?
+    assert_not_nil @valid_user.errors[:last_name]
   end
 
   test "invalid without email" do
-    @user.email = nil
-    refute @user.valid?
-    assert_not_nil @user.errors[:email]
+    @valid_user.email = nil
+    refute @valid_user.valid?
+    assert_not_nil @valid_user.errors[:email]
   end
 
   test "valid without admin boolean value" do
-    @user.admin = nil
-    assert @user.valid?
+    @valid_user.admin = nil
+    assert @valid_user.valid?
+  end
+
+  test "#groups" do
+    assert_equal 2, @user_one.groups.size 
   end
 
 end

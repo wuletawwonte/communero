@@ -9,3 +9,8 @@ two:
   name: MyString
   description: MyText
   user: two
+
+three:
+  name: MyString
+  description: MyText
+  user: one
