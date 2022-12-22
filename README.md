@@ -24,7 +24,7 @@ To get a local copy follow these simple example steps.
 - Run `rails db:create` to create the database.
 - Run rails `rails db:schema:load` to create the relations in the database for the project based on the schema file inside the `db` folder.
 - Run rails server or rails s to start the application on local server.
-- To test the project, run `rspec` in your terminal
+- To test the project, run `rails test` in your terminal
 
 ## Authors
 
