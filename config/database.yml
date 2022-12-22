@@ -24,6 +24,7 @@ default: &default
 development:
   <<: *default
   database: simplero_take_home_test_rails_development
+  username: postgres
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: simplero_take_home_test_rails_production
-  username: simplero_take_home_test_rails
-  password: <%= ENV["SIMPLERO_TAKE_HOME_TEST_RAILS_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
