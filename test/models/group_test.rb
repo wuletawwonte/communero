@@ -26,4 +26,8 @@ class GroupTest < ActiveSupport::TestCase
     assert_equal 1, @group_one.users.size 
   end
 
+  test "user has many posts" do
+    assert_equal 2, @group_one.posts.size 
+  end
+
 end

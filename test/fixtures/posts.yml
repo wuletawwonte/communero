@@ -1,5 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+valid:
+  title: MyString
+  body: MyText
+  status: 1
+  user: two
+  group: one
+
 one:
   title: MyString
   body: MyText

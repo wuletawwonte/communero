@@ -9,3 +9,8 @@ two:
   content: MyString
   post: two
   user: two
+
+three:
+  content: MyString
+  post: one
+  user: one

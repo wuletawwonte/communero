@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :groups, through: :members, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
   validates :email, :uniqueness => {:allow_blank => false}

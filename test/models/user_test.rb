@@ -42,4 +42,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 2, @user_one.posts.size 
   end
 
+  test "user has many comments" do
+    assert_equal 2, @user_one.comments.size 
+  end
+
 end
