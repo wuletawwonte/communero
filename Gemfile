@@ -57,8 +57,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console'
   gem 'annotate'
+  gem 'web-console'
 end
 
 group :test do
@@ -67,4 +67,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "devise", "~> 4.8"
+gem 'devise', '~> 4.8'
