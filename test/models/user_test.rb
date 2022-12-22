@@ -34,8 +34,12 @@ class UserTest < ActiveSupport::TestCase
     assert @valid_user.valid?
   end
 
-  test "#groups" do
+  test "user has many groups" do
     assert_equal 2, @user_one.groups.size 
+  end
+
+  test "user has many posts" do
+    assert_equal 2, @user_one.posts.size 
   end
 
 end

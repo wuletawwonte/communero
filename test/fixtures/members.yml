@@ -9,3 +9,8 @@ two:
   role: MyString
   user: two
   group: two
+
+three:
+  role: MyString
+  user: one
+  group: two

@@ -13,3 +13,10 @@ two:
   status: 1
   user: two
   group: two
+
+three:
+  title: MyString
+  body: MyText
+  status: 1
+  user: one
+  group: two
