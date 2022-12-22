@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_074321) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_22_080341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_074321) do
     t.index ["user_id"], name: "index_members_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_posts_on_group_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -51,4 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_074321) do
   add_foreign_key "groups", "users"
   add_foreign_key "members", "groups"
   add_foreign_key "members", "users"
+  add_foreign_key "posts", "groups"
+  add_foreign_key "posts", "users"
 end
