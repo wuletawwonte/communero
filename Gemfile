@@ -69,3 +69,7 @@ end
 
 gem 'devise', '~> 4.8'
 gem 'view_component'
+gem 'simple_form'
+gem 'simple_form-tailwind'
+gem 'cancancan'
+gem 'kaminari'
