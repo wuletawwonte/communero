@@ -26,4 +26,13 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   validates :email, uniqueness: { allow_blank: false }
+
+  def initials
+    "#{first_name.strip.chr.upcase}#{last_name.strip.chr.upcase}"
+  end
+
+  def avatar_color
+    colors = %w[orange lime green teal cyan sky violet fuchsia pink]
+    colors[self.id % colors.size]
+  end
 end

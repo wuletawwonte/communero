@@ -11,4 +11,6 @@
   <div id="groups" class="min-w-full">
     <%= render @groups %>
   </div>
+                      <%= render(UserIconComponent.new(initial: current_user.initials)) %>
+
 </div>
