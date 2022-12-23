@@ -14,7 +14,7 @@
                     <div class="flex items-center space-x-4">
                       <div class="flex-1 min-w-0">
                           <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
-                            <%= group.name %>
+                            <%= link_to group.name, group_path(group), class: "text-blue-600 hover:text-blue-700" %>
                             <% if group.created_by(current_user) %>
                               <span class="text-sm text-gray-500 truncate dark:text-gray-400">created by you</span>
                             <% end %>
@@ -26,9 +26,11 @@
                             <%= group.members_count + " " + group.posts_count  %> 
                           </p>
                       </div>
-                      <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                          <%= link_to "JOIN", @group, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-                      </div>
+                      <% if group.is_not_member(current_user.id) %>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                            <%= link_to "JOIN", @group, class: "ml-2 rounded-lg py-2 px-3 text-white bg-purple-600 hover:bg-purple-700 inline-block font-medium" %>
+                        </div>
+                      <% end %>
                     </div>
                 </li>
               <% end %>
