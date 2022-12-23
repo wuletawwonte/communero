@@ -16,7 +16,9 @@ class GroupsController < ApplicationController
   end
 
   # GET /groups/1/edit
-  def edit; end
+  def edit
+    render partial: 'modal', locals: { group: @group } if turbo_frame_request?
+  end
 
   # POST /groups or /groups.json
   def create
