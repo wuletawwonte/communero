@@ -1,0 +1,28 @@
+
+<%= form_with(model: post, id: "#{dom_id(post)}_form") do |form| %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :title, class: "sr-only"%>
+    <%= form.text_field :title, placeholder: "Post title", label: false, class: "shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 leading-6 transition-colors duration-200 ease-in-out" %>
+  </div>
+  <div class="my-5">
+    <%= form.label :body, class: "sr-only" %>
+    <%= form.text_area :body, as: :text, placeholder: "Post content ...", label: false, input_html: { rows: 5 }, class: "shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 leading-6 transition-colors duration-200 ease-in-out" %>
+  </div>
+  <div class="my-5">
+    <%= form.submit "Save post", class: "inline-flex justify-center py-2 px-4 cursor-pointer border border-transparent shadow-sm text-sm font-medium rounded-md p-2.5 text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600" %>
+  </div>
+
+<% end %>

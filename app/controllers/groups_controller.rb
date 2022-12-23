@@ -7,7 +7,11 @@ class GroupsController < ApplicationController
   end
 
   # GET /groups/1 or /groups/1.json
-  def show; end
+  def show
+    @members = User.members_of(@group)
+    @post = Post.new
+    @posts = @group.posts
+  end
 
   # GET /groups/new
   def new
