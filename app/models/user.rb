@@ -33,6 +33,6 @@ class User < ApplicationRecord
 
   def avatar_color
     colors = %w[orange lime green teal cyan sky violet fuchsia pink]
-    colors[self.id % colors.size]
+    colors[id % colors.size]
   end
 end
