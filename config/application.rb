@@ -20,5 +20,6 @@ module SimpleroTakeHomeTestRails
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_record.verify_foreign_keys_for_fixtures = false
+    config.view_component.preview_paths << "#{Rails.root}/lib/component_previews"
   end
 end

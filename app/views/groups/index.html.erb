@@ -1,0 +1,19 @@
+      <%= render(HeaderComponent.new(title: "Groups")) do %>
+        <%= link_to 'New group', new_group_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <% end %>
+
+
+      <main>
+        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+          <div class="w-full">
+
+            <div id="groups" class="min-w-full">
+              <%= render @groups %>
+            </div>
+            <%= render(UserIconComponent.new(initial: current_user.initials)) %>
+
+          </div>
+
+        </div>
+      </main>
+
