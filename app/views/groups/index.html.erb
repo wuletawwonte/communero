@@ -7,9 +7,28 @@
         <div class="mx-auto max-w-5xl py-6 sm:px-6 lg:px-8">
           <div class="w-full">
 
-            <div id="groups" class="min-w-full">
-              <%= render @groups %>
-            </div>
+            <ul class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <% @groups.each do |group| %>
+
+                <li class="p-3 sm:p-4">
+                    <div class="flex items-center space-x-4">
+                      <div class="flex-1 min-w-0">
+                          <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                            <%= group.name %>
+                          </p>
+                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            <%= group.description %>
+                          </p>
+                      </div>
+                      <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                          <%= link_to "JOIN", @group, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+                      </div>
+                    </div>
+                </li>
+              <% end %>
+            </ul>
+
+
 
           </div>
 
