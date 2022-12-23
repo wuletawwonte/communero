@@ -1,5 +1,5 @@
       <%= render(HeaderComponent.new(title: "Groups")) do %>
-        <%= link_to 'New group', new_group_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <%= link_to 'New group', new_group_path, data: { "turbo-frame": "modal" }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
       <% end %>
 
 

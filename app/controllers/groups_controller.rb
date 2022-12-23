@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
+    render partial: 'modal', locals: { group: @group } if turbo_frame_request?
   end
 
   # GET /groups/1/edit
