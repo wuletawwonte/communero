@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :posts, only: [] do    
     resources :comments
   end 
+  
+  resources :comments, only: [] do      
+    resources :sub_comments
+  end  
 
   devise_for :users
 
