@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_group, only: %i[show edit update destroy create_post]
 
   # GET /groups or /groups.json
   def index
@@ -62,6 +62,22 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def create_post
+    @post = Post.new(post_params)
+    @post.user = current_user
+    @post.group = @group
+
+    respond_to do |format|
+      if @post.save
+        format.turbo_stream
+        format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   private
 
