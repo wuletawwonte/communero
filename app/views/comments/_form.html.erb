@@ -7,8 +7,13 @@
       </button>
   </div>
 
-  <div data-comment-target="commentform">
-    <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Comment ...", input_html: { rows: 3 } %>
-    <%= form.button :submit %>
+  <div data-comment-target="commentform" class="flex justify-center space-x-3">
+    <div class="pt-5">
+      <%= render(UserIconComponent.new(initial: current_user.initials, color: current_user.avatar_color)) %>
+    </div>
+    <div class="flex-grow">
+      <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Comment ...", input_html: { rows: 3 } %>
+      <%= form.button :submit %>
+    </div>
   </div>
 <% end %>

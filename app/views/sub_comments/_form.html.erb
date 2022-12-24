@@ -1,17 +1,8 @@
-<%= form_with(model: sub_comment, class: "contents") do |form| %>
-  <% if sub_comment.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(sub_comment.errors.count, "error") %> prohibited this sub_comment from being saved:</h2>
+<div class="ml-8 mt-4">
+  <%= simple_form_for [comment, sub_comment], html: { class: "contents space-y-1" } do |form| %>
 
-      <ul>
-        <% sub_comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Reply ...", input_html: { rows: 2 } %>
+    <%= form.button :submit %>
+
   <% end %>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>
