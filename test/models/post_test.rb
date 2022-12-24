@@ -35,11 +35,6 @@ class PostTest < ActiveSupport::TestCase
     assert_not_nil @valid_post.errors[:body]
   end
 
-  test 'valid without status' do
-    @valid_post.status = nil
-    assert @valid_post.valid?
-  end
-
   test 'post has many comments' do
     assert_equal 2, @post_one.comments.size
   end

@@ -1,9 +1,19 @@
-<%= simple_form_for [@post, comment], html: { id: "#{dom_id(comment)}_form" } do |form| %>
+<%= simple_form_for [@post, comment], html: { id: "#{dom_id(comment)}_form" }, data: { controller: "comment" } do |form| %>
   <div class="flex justify-between items-center mb-6">
       <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (<%= @post.comments.count %>)</h2>
+      <button type="button" data-action="comment#toggleForm" class="flex items-center px-3 py-2 mr-2 text-xs font-medium text-gray-900 bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true" class="w-4 h-4 mr-2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+        Show/hide form
+      </button>
   </div>
 
-  <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Comment ...", input_html: { rows: 3 } %>
-
-  <%= form.button :submit %>
+  <div data-comment-target="commentform" class="flex justify-center space-x-3">
+    <div class="pt-5">
+      <%= render(UserIconComponent.new(initial: current_user.initials, color: current_user.avatar_color)) %>
+    </div>
+    <div class="flex-grow">
+      <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Comment ...", input_html: { rows: 3 } %>
+      <%= form.button :submit %>
+    </div>
+  </div>
 <% end %>

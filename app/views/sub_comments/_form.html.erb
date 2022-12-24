@@ -1,0 +1,8 @@
+<div class="ml-8 mt-4">
+  <%= simple_form_for [comment, sub_comment], html: { class: "contents space-y-1" } do |form| %>
+
+    <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Reply ...", input_html: { rows: 2 } %>
+    <%= form.button :submit %>
+
+  <% end %>
+</div>

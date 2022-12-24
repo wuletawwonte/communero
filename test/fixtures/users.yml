@@ -36,3 +36,4 @@ valid:
   last_name: Piper
   email: johnpiper@gmail.com
   encrypted_password: <%= Devise::Encryptor.digest(User, '12344321') %>
+  admin: false

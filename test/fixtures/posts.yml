@@ -15,27 +15,23 @@
 valid:
   title: MyString
   body: MyText
-  status: 1
   user: two
   group: one
 
 one:
   title: MyString
   body: MyText
-  status: 1
   user: one
   group: one
 
 two:
   title: MyString
   body: MyText
-  status: 1
   user: two
   group: two
 
 three:
   title: MyString
   body: MyText
-  status: 1
   user: one
   group: two

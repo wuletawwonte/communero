@@ -14,7 +14,7 @@
           <header class="mb-4 lg:mb-6 not-format">
               <address class="flex items-center mb-6 not-italic">
                   <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white space-x-2">
-                      <%= render(UserIconComponent.new(initial: @post.user.initials, color: @post.user.avatar_color, size: 14)) %>
+                      <%= render(UserIconComponent.new(initial: @post.user.initials, color: @post.user.avatar_color, size: 14, text_size: "text-2xl")) %>
                       <div>
                           <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white"><%= @post.user.full_name %></a>
                           <p class="text-base font-light text-gray-500 dark:text-gray-400"><%= @post.user.email %></p>

@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "groups" do %>
+  <%= render "group", group: @group %>
+<% end %>
+
+<%= turbo_stream.replace "modal" do %>
+  <%= "" %>
+<% end %>

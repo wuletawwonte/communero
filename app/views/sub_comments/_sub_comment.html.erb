@@ -1,0 +1,29 @@
+
+<article  id="<%= dom_id sub_comment %>" class="py-6 ml-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+    <footer class="flex justify-between items-center mb-2">
+        <div class="flex items-center">
+            <p class="inline-flex items-center text-sm text-gray-900 dark:text-white">
+                <%= render(UserIconComponent.new(initial: sub_comment.user.initials, color: sub_comment.user.avatar_color, size: 6)) %>
+
+                <span class="ml-3 text-sm text-gray-600 dark:text-gray-400"><%= sub_comment.user.full_name %></span>
+            </p>
+            <p class="ml-4 text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="<%= sub_comment.created_at %>"
+                    title="<%= sub_comment.created_at.strftime("%b. %-d, %Y")%>"><%= sub_comment.created_at.strftime("%b. %-d, %Y")%></time></p>
+        </div>
+        <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
+            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            type="button">
+            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z">
+                </path>
+            </svg>
+            <span class="sr-only">Comment settings</span>
+        </button>
+    </footer>
+    
+    <p class="dark:text-white"><%= sub_comment.content %></p>
+    
+    
+</article>
