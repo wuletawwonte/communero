@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
 
   # GET /groups or /groups.json
   def index
-    @groups = Group.all.order(created_at: :desc)
+    @groups = Group.all.order(created_at: :desc).page params[:page]
   end
 
   # GET /groups/1 or /groups/1.json
