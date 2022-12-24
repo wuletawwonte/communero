@@ -36,7 +36,8 @@
         <%= render "sub_comments/form", comment: comment, sub_comment: SubComment.new %>
     </div>
 
-    <div>
+    <div class="sub_comments">
+        <%= render comment.sub_comments %>
     </div>
     
 </article>

@@ -1,6 +1,3 @@
-<%= turbo_stream.prepend "posts" do %>
-  <%= render "post", post: @post %>
-<% end %>
-<%= turbo_stream.replace "#{dom_id(Post.new)}_form" do %>
-  <%= render "form", post: Post.new %>
+<%= turbo_stream.prepend "sub_comments" do %>
+  <%= render @comment.sub_comments %>
 <% end %>
