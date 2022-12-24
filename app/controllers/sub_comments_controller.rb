@@ -1,7 +1,7 @@
 class SubCommentsController < ApplicationController
   load_and_authorize_resource
   before_action :set_comment
-  before_action :set_sub_comment, only: %i[ show edit update destroy ]
+  before_action :set_sub_comment, only: %i[show edit update destroy]
 
   # GET /sub_comments or /sub_comments.json
   def index
@@ -9,8 +9,7 @@ class SubCommentsController < ApplicationController
   end
 
   # GET /sub_comments/1 or /sub_comments/1.json
-  def show
-  end
+  def show; end
 
   # GET /sub_comments/new
   def new
@@ -18,12 +17,10 @@ class SubCommentsController < ApplicationController
   end
 
   # GET /sub_comments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /sub_comments or /sub_comments.json
   def create
-
     @sub_comment = @comment.sub_comments.build(sub_comment_params)
     @sub_comment.user = current_user
 
@@ -39,14 +36,13 @@ class SubCommentsController < ApplicationController
         format.html { render :index, status: :unprocessable_entity }
       end
     end
-
   end
 
   # PATCH/PUT /sub_comments/1 or /sub_comments/1.json
   def update
     respond_to do |format|
       if @sub_comment.update(sub_comment_params)
-        format.html { redirect_to sub_comment_url(@sub_comment), notice: "Sub comment was successfully updated." }
+        format.html { redirect_to sub_comment_url(@sub_comment), notice: 'Sub comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @sub_comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,16 +56,17 @@ class SubCommentsController < ApplicationController
     @sub_comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to sub_comments_url, notice: "Sub comment was successfully destroyed." }
+      format.html { redirect_to sub_comments_url, notice: 'Sub comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sub_comment
-      @sub_comment = SubComment.find(params[:id])
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sub_comment
+    @sub_comment = SubComment.find(params[:id])
+  end
 
   # Use callbacks to share comment constraints between actions.
   def set_comment
