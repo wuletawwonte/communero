@@ -3,7 +3,7 @@ class Ability
 
   def initialize(user)
     can :create, Group
-    can :manage, Group, user
+    can :manage, Group
     can :manage, Member
     can :manage, Post
     can :manage, Comment
