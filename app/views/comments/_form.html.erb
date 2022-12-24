@@ -1,4 +1,7 @@
 <%= simple_form_for [@post, comment], html: { id: "#{dom_id(comment)}_form" } do |form| %>
+  <div class="flex justify-between items-center mb-6">
+      <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (<%= @post.comments.count %>)</h2>
+  </div>
 
   <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Comment ...", input_html: { rows: 3 } %>
 

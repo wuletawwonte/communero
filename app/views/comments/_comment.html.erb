@@ -1,12 +1,13 @@
 <article  id="<%= dom_id comment %>" class="p-6 mb-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
     <footer class="flex justify-between items-center mb-2">
         <div class="flex items-center">
-            <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
-                    class="mr-2 w-6 h-6 rounded-full"
-                    src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
-                    alt="Bonnie Green">Bonnie Green</p>
-            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-03-12"
-                    title="March 12th, 2022">Mar. 12, 2022</time></p>
+            <p class="inline-flex items-center text-sm text-gray-900 dark:text-white">
+                <%= render(UserIconComponent.new(initial: comment.user.initials, color: comment.user.avatar_color, size: 6)) %>
+
+                <span class="ml-3 text-sm text-gray-600 dark:text-gray-400"><%= comment.user.full_name %></span>
+            </p>
+            <p class="ml-4 text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="<%= comment.created_at %>"
+                    title="<%= comment.created_at.strftime("%b. %-d, %Y")%>"><%= comment.created_at.strftime("%b. %-d, %Y")%></time></p>
         </div>
         <button id="dropdownComment3Button" data-dropdown-toggle="dropdownComment3"
             class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
