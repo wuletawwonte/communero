@@ -1,4 +1,4 @@
-<%= simple_form_for [@group, post], local: true, class: "contents" do |form| %>
+<%= simple_form_for [@group, post], id: "#{dom_id(post)}_form" do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
