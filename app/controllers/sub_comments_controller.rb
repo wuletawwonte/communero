@@ -1,4 +1,5 @@
 class SubCommentsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_comment
   before_action :set_sub_comment, only: %i[ show edit update destroy ]
 
