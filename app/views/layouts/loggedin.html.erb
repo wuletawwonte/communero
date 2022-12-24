@@ -11,15 +11,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="dark:bg-gray-900">
 
-    <div class="min-h-full">
+    <div class="min-h-full dark:bg-gray-900">
       <nav class="bg-gray-800" data-controller="navigation">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
               <a href="/" class="flex-shrink-0">
-                <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                <%= render(LogoComponent.new()) %>
               </a>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
