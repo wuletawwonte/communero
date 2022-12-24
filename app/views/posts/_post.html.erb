@@ -1,3 +1,27 @@
-<div id="<%= dom_id post %>">
-  <%= post.title %>
-</div>
+
+<section class="bg-white dark:bg-gray-900" id="<%= dom_id post %>">
+    <div class="py-3 mx-auto max-w-screen-xl sm:py-5">
+        <div class="max-w-screen-md">
+            <h2 class="mb-1 text-2xl tracking-tight font-extrabold text-gray-800 dark:text-white">
+              <%= post.title %>
+            </h2>
+            <div class="mb-2 flex items-center space-x-2">
+                <p class="inline-flex items-center text-sm text-gray-900 dark:text-white">
+                  <%= render(UserIconComponent.new(initial: post.user.initials, color: post.user.avatar_color)) %>
+
+                  <span class="ml-2 text-sm text-gray-600 dark:text-gray-400"><%= post.user.full_name %></span>
+                </p>
+                <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
+                        title="February 8th, 2022">Feb. 8, 2022</time></p>
+            </div>            
+            <p class="mb-4 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+              <%= post.body %>
+            </p>
+            <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
+                <a href="#" class="inline-flex items-center justify-center px-4 py-2.5 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

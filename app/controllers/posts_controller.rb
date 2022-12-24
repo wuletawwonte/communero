@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = @group.posts
+    @posts = @group.posts.includes(:user)
     @members = User.members_of(@group)
     @post = @group.posts.build
   end
