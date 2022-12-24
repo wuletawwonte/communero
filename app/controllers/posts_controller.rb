@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
+  before_action :set_group
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+    @members = User.members_of(@group)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -61,6 +63,11 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    # Use callbacks to share common group between actions.
+    def set_group
+      @group = Group.find(params[:group_id])
     end
 
     # Only allow a list of trusted parameters through.
