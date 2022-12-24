@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    @comments = @post.comments.includes(:user)
+    @comment = @post.comments.build
   end
 
   # GET /comments/1 or /comments/1.json
@@ -22,17 +23,19 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.build(comment_params)
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to comment_url(@comment), notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @comment }
+        format.turbo_stream
+        format.html { redirect_to post_comments_path(@post), notice: 'Comment added successfully.' }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@comment)}_form", partial: "form", locals: { comment: @comment }) }
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /comments/1 or /comments/1.json
@@ -71,6 +74,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.fetch(:comment, {})
+      params.require(:comment).permit(:content, :post_id)
     end
 end

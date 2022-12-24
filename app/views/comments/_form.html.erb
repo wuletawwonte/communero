@@ -1,17 +1,6 @@
-<%= form_with(model: comment, class: "contents") do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<%= simple_form_for [@post, comment], html: { id: "#{dom_id(comment)}_form" } do |form| %>
 
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= form.input :content, as: :text, label_html: { class: "sr-only"}, placeholder: "Comment ...", input_html: { rows: 3 } %>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+  <%= form.button :submit %>
 <% end %>
