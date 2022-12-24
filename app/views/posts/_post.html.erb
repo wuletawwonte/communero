@@ -5,14 +5,14 @@
             <h2 class="mb-1 text-2xl tracking-tight font-extrabold text-gray-800 dark:text-white">
               <%= link_to post.title, post_comments_path(post) %>
             </h2>
-            <div class="mb-2 flex items-center space-x-2">
+            <div class="mb-2 flex items-center">
                 <p class="inline-flex items-center text-sm text-gray-900 dark:text-white">
                   <%= render(UserIconComponent.new(initial: post.user.initials, color: post.user.avatar_color)) %>
 
                   <span class="ml-2 text-sm text-gray-600 dark:text-gray-400"><%= post.user.full_name %></span>
                 </p>
-                <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                        title="February 8th, 2022"><%= post.created_at.strftime("%b. %-d, %Y")%></time></p>
+                <p class="ml-3 text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="<%= @post.created_at %>"
+                        title="<%= post.created_at.strftime("%b. %-d, %Y")%>"><%= post.created_at.strftime("%b. %-d, %Y")%></time></p>
             </div>            
             <p class="mb-4 font-light text-gray-500 sm:text-xl dark:text-gray-400">
               <%= post.body %>

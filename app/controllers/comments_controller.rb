@@ -66,7 +66,7 @@ class CommentsController < ApplicationController
 
     # Use callbacks to share post constraints between actions.
     def set_post
-      @post = Post.find(params[:post_id])
+      @post = Post.includes(:user).find(params[:post_id])
     end
 
     # Only allow a list of trusted parameters through.

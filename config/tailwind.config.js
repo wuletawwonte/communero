@@ -21,6 +21,8 @@ module.exports = {
     'h-24',
     'w-9',
     'h-9',
+    'w-14',
+    'h-14',
     'w-8',
     'h-8',
     'border-none',
