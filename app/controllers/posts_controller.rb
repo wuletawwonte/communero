@@ -30,6 +30,7 @@ class PostsController < ApplicationController
         format.turbo_stream
         format.html { redirect_to group_posts_path(@group), notice: 'Post was successfully created.' }
       else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@post)}_form", partial: "form", locals: { post: @post }) }
         format.html { render :index, status: :unprocessable_entity }
       end
     end
