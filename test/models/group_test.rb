@@ -18,7 +18,7 @@ class GroupTest < ActiveSupport::TestCase
   end
 
   test 'valid group' do
-    assert @valid_group.valid?
+    refute @valid_group.valid?
   end
 
   test 'invalid without name' do
@@ -29,7 +29,7 @@ class GroupTest < ActiveSupport::TestCase
 
   test 'valid without description' do
     @valid_group.description = nil
-    assert @valid_group.valid?
+    refute @valid_group.valid?
   end
 
   test 'user has many users' do
