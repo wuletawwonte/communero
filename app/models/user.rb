@@ -21,14 +21,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :groups, through: :members, dependent: :destroy
   has_many :groups, dependent: :destroy
+  has_many :members, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
   validates :email, uniqueness: { allow_blank: false }
 
+  scope :members_of, ->(group) { joins(:members).where(members: { group_id: group.id }) }
+
   def initials
     "#{first_name.strip.chr.upcase}#{last_name.strip.chr.upcase}"
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   def avatar_color

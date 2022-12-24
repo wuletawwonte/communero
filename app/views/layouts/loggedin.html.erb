@@ -14,29 +14,26 @@
   <body>
 
     <div class="min-h-full">
-      <nav class="bg-gray-800">
+      <nav class="bg-gray-800" data-controller="navigation">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
-              <div class="flex-shrink-0">
+              <a href="/" class="flex-shrink-0">
                 <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-              </div>
+              </a>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
                   <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Groups</a>
-                  <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Team</a>
                   <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projects</a>
                 </div>
               </div>
             </div>
             <div class="hidden md:block">
               <div class="ml-4 flex items-center md:ml-6">
-                <button type="button" class="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                  <span class="sr-only">View notifications</span>
-                  <!-- Heroicon name: outline/bell -->
-                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                  </svg>
+                <button data-tooltip-target="default-footer-example-toggle-dark-mode-tooltip" type="button" data-toggle-dark="dark" class="flex items-center p-2 mr-2 text-xs font-medium border rounded-lg toggle-dark-state-example focus:z-10 focus:ring-2 focus:ring-gray-500 bg-gray-800 focus:outline-none text-gray-400 border-gray-600 hover:text-white hover:bg-gray-700">
+                  <svg aria-hidden="true" data-toggle-icon="moon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                  <svg aria-hidden="true" data-toggle-icon="sun" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Toggle dark/light mode</span>
                 </button>
 
                 <!-- Profile dropdown -->
@@ -60,7 +57,7 @@
             </div>
             <div class="-mr-2 flex md:hidden">
               <!-- Mobile menu button -->
-              <button type="button" class="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
+              <button type="button" data-action="navigation#toggleMobileMenu" class="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <!--
                   Heroicon name: outline/bars-3
@@ -84,18 +81,11 @@
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="md:hidden" id="mobile-menu">
+        <div class="hidden md:hidden" data-navigation-target="mobilemenu">
           <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
-
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Groups</a>
             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Calendar</a>
-
-            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Reports</a>
           </div>
           <div class="border-t border-gray-700 pt-4 pb-3">
             <div class="flex items-center px-5">
@@ -122,18 +112,23 @@
           </div>
         </div>
       </nav>
+
+      <%# A wrapper frame to hold modal content %>
+      <%= turbo_frame_tag "modal" %>
+
       <% if notice.present? %>
-        <div class="flex items-center bg-purple-500 text-white text-sm font-bold px-4 py-3" role="alert">
+        <div class="flex items-center bg-blue-600 text-white text-sm font-bold px-4 py-3" role="alert">
           <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
           <p><%= notice %></p>
         </div>
       <% end %>
 
       <!-- Main page content starts here -->
-        <%= yield %>
+      <%= yield %>
       <!-- Main page content ends here -->
-    </div>
 
+      <%= render(FooterComponent.new()) %>
+    </div>
 
 
   </body>

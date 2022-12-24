@@ -67,5 +67,9 @@ group :test do
   gem 'webdrivers'
 end
 
+gem 'cancancan'
 gem 'devise', '~> 4.8'
+gem 'kaminari'
+gem 'simple_form'
+gem 'simple_form-tailwind'
 gem 'view_component'

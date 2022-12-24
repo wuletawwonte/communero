@@ -1,16 +1,42 @@
       <%= render(HeaderComponent.new(title: "Groups")) do %>
-        <%= link_to 'New group', new_group_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <%= link_to 'New group', new_group_path, data: { "turbo-frame": "modal" }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
       <% end %>
 
 
       <main>
-        <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-5xl py-6 sm:px-6 lg:px-8">
           <div class="w-full">
 
-            <div id="groups" class="min-w-full">
-              <%= render @groups %>
-            </div>
-            <%= render(UserIconComponent.new(initial: current_user.initials)) %>
+            <ul class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <% @groups.each do |group| %>
+
+                <li class="p-3 sm:p-4">
+                    <div class="flex items-center space-x-4">
+                      <div class="flex-1 min-w-0">
+                          <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
+                            <%= link_to group.name, group_posts_path(group), class: "text-blue-600 hover:text-blue-700" %>
+                            <% if group.created_by(current_user) %>
+                              <span class="text-sm text-gray-500 truncate dark:text-gray-400">created by you</span>
+                            <% end %>
+                          </p>
+                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            <%= group.description %>
+                          </p>
+                          <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                            <%= group.members_count + " " + group.posts_count  %> 
+                          </p>
+                      </div>
+                      <% if group.not_member(current_user.id) %>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                            <%= link_to "JOIN", @group, class: "ml-2 rounded-lg py-2 px-3 text-white bg-purple-600 hover:bg-purple-700 inline-block font-medium" %>
+                        </div>
+                      <% end %>
+                    </div>
+                </li>
+              <% end %>
+            </ul>
+
+
 
           </div>
 

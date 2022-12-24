@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_group, only: %i[show edit update destroy create_post]
 
   # GET /groups or /groups.json
   def index
@@ -7,19 +7,27 @@ class GroupsController < ApplicationController
   end
 
   # GET /groups/1 or /groups/1.json
-  def show; end
+  def show
+    @members = User.members_of(@group)
+    @post = Post.new
+    @posts = @group.posts
+  end
 
   # GET /groups/new
   def new
     @group = Group.new
+    render partial: 'modal', locals: { group: @group } if turbo_frame_request?
   end
 
   # GET /groups/1/edit
-  def edit; end
+  def edit
+    render partial: 'modal', locals: { group: @group } if turbo_frame_request?
+  end
 
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
+    @group.user = current_user
 
     respond_to do |format|
       if @group.save
@@ -55,6 +63,21 @@ class GroupsController < ApplicationController
     end
   end
 
+  def create_post
+    @post = Post.new(post_params)
+    @post.user = current_user
+    @post.group = @group
+
+    respond_to do |format|
+      if @post.save
+        format.turbo_stream
+        format.html { redirect_to group_url(@group), notice: 'Post was successfully created.' }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -64,6 +87,6 @@ class GroupsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def group_params
-    params.fetch(:group, {})
+    params.require(:group).permit(:name, :description)
   end
 end
