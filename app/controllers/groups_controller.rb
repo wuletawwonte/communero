@@ -71,13 +71,12 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.turbo_stream
-        format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
+        format.html { redirect_to group_url(@group), notice: 'Post was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
-
 
   private
 
