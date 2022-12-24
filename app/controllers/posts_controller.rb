@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @members = User.members_of(@group)
+    @post = @group.posts.build
+
   end
 
   # GET /posts/1 or /posts/1.json
@@ -14,7 +16,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = @group.posts.build
   end
 
   # GET /posts/1/edit
@@ -72,6 +74,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.fetch(:post, {})
+      params.require(:post).permit(:title, :body, :group_id)
     end
 end
