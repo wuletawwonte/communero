@@ -3,7 +3,7 @@
     <div class="py-3 mx-auto max-w-screen-xl sm:py-5">
         <div class="max-w-screen-md">
             <h2 class="mb-1 text-2xl tracking-tight font-extrabold text-gray-800 dark:text-white">
-              <%= post.title %>
+              <%= link_to post.title, post_comments_path(post) %>
             </h2>
             <div class="mb-2 flex items-center space-x-2">
                 <p class="inline-flex items-center text-sm text-gray-900 dark:text-white">
@@ -12,7 +12,7 @@
                   <span class="ml-2 text-sm text-gray-600 dark:text-gray-400"><%= post.user.full_name %></span>
                 </p>
                 <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-                        title="February 8th, 2022">Feb. 8, 2022</time></p>
+                        title="February 8th, 2022"><%= post.created_at.strftime("%b. %-d, %Y")%></time></p>
             </div>            
             <p class="mb-4 font-light text-gray-500 sm:text-xl dark:text-gray-400">
               <%= post.body %>

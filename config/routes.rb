@@ -1,8 +1,11 @@
 Rails.application.routes.draw do  
-  resources :comments
   resources :groups do
     resources :posts
   end
+  resources :posts, only: [] do    
+    resources :comments
+  end 
+
   devise_for :users
 
   devise_scope :user do

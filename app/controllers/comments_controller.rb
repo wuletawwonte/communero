@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :set_post
   before_action :set_comment, only: %i[ show edit update destroy ]
 
   # GET /comments or /comments.json
@@ -61,6 +62,11 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    # Use callbacks to share post constraints between actions.
+    def set_post
+      @post = Post.find(params[:post_id])
     end
 
     # Only allow a list of trusted parameters through.
