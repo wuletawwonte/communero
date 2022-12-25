@@ -33,9 +33,10 @@ class PostsController < ApplicationController
       else
         format.turbo_stream do
           render turbo_stream: turbo_stream.replace(
-            "#{helpers.dom_id(@post)}_form", 
+            "#{helpers.dom_id(@post)}_form",
             partial: 'form',
-            locals: { post: @post })
+            locals: { post: @post }
+          )
         end
         format.html { render :index, status: :unprocessable_entity }
       end

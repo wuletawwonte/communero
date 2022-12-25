@@ -78,7 +78,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(
-          "members",
+          'members',
           partial: 'posts/members',
           locals: { members: @members }
         )
