@@ -1,5 +1,6 @@
 Rails.application.routes.draw do  
   resources :members
+  delete '/destroy_member/:id' => "members#destroy_member", as: :remove_member
   resources :groups do
     resources :posts
   end

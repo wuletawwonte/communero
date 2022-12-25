@@ -1,0 +1,28 @@
+<ul class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+  <% members.each do |member| %>
+
+    <li class="py-2">
+        <div class="flex items-center space-x-2">
+          <div class="min-w-0">
+            <%= render(UserIconComponent.new(initial: member.initials, color: member.avatar_color)) %>
+          </div>
+          <div class="flex-1 min-w-0">
+              <p class="text-sm text-gray-800 truncate dark:text-gray-400">
+                <%= member.full_name %>
+              </p>
+              <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                <%= member.email  %> 
+              </p>
+          </div>
+          <div class="inline-flex items-center justify-center text-base font-semibold text-gray-900 dark:text-white">
+            <% if @group.created_by(current_user) && current_user.id != member.id %>                                
+              <%= button_to remove_member_path(@group.member_id(member.id)), method: :delete, params: { group_id: @group.id }, class: "text-yellow-700 border border-yellow-700 hover:bg-yellow-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-full text-sm p-1.5 text-center inline-flex items-center dark:border-yellow-500 dark:text-yellow-500 dark:hover:text-white dark:focus:ring-yellow-800" do %>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7a4 4 0 11-8 0 4 4 0 018 0zM9 14a6 6 0 00-6 6v1h12v-1a6 6 0 00-6-6zM21 12h-6"></path></svg>
+                <span class="sr-only">Remove User</span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+    </li>
+  <% end %>
+</ul>

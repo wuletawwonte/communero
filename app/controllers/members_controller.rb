@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: %i[show edit update destroy]
+  before_action :set_member, only: %i[show edit update destroy destroy_member]
 
   # GET /members or /members.json
   def index
@@ -64,6 +64,23 @@ class MembersController < ApplicationController
           "#{helpers.dom_id(@group)}_group",
           partial: 'groups/group',
           locals: { group: @group }
+        )
+      end
+      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+    end
+  end
+
+  def destroy_member
+    @group = Group.find(params[:group_id])
+    @members = User.members_of(@group)
+    @member.destroy
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "members",
+          partial: 'posts/members',
+          locals: { members: @members }
         )
       end
       format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
