@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = @group.posts.includes(:user)
+    @posts = @group.posts.includes(:user).order(created_at: :desc).page params[:page]
     @members = User.members_of(@group)
     @post = @group.posts.build
   end
@@ -57,11 +57,12 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    @bpost = @post
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@bpost)}_post") }
+      format.html { redirect_to group_posts_url(@group), notice: 'Post was successfully destroyed.' }
     end
   end
 

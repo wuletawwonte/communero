@@ -7,7 +7,7 @@
     <% end %>
   </div>
 
-<main class="mx-auto md:w-full w-full flex">
+  <main class="mx-auto md:w-full w-full flex">
 
     <div class="container p-2 sm:p-4 mx-auto">
         <div class="flex flex-row flex-wrap py-4">
@@ -20,6 +20,8 @@
                 <%= render @posts %>
               </div>
 
+              <%= paginate @posts %>
+
             </main>
             <aside class="w-full sm:w-1/3 md:w-3/7 px-2 border-l sm:border-l-none dark:border-gray-600 dark:bg-gray-900">
                 <div class="sticky top-0 p-4 rounded-xl w-full">
@@ -30,9 +32,9 @@
                     <%= render "members", members: @members %>
                   </div>                  
 
+
                 </div>
             </aside>
         </div>
     </div>
-
-</main>
+  </main>

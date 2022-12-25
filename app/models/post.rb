@@ -16,6 +16,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   validates :title, :body, presence: true
+  validates :title, uniqueness: true
 
   def created_by(user)
     true if self.user == user
