@@ -1,10 +1,14 @@
-<li class="p-3 sm:p-4">
+<li id="<%= "#{dom_id(group)}_group" %>" class="p-3 sm:p-4" >
     <div class="flex items-center space-x-4">
       <div class="flex-1 min-w-0">
           <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
-            <%= link_to group.name, group_posts_path(group), class: "text-blue-600 hover:text-blue-700" %>
+            <% if group.not_member(current_user) %>
+              <%= group.name %>
+            <% else %>
+              <%= link_to group.name, group_posts_path(group), class: "text-blue-600 hover:text-blue-700" %>
+            <% end %>
             <% if group.created_by(current_user) %>
-              <span class="text-sm text-gray-500 truncate dark:text-gray-400">created by you</span>
+              <span class="text-xs text-gray-500 truncate dark:text-gray-600">Created by you</span>
             <% end %>
           </p>
           <p class="text-sm text-gray-500 truncate dark:text-gray-400">
@@ -16,7 +20,15 @@
       </div>
       <% if group.not_member(current_user.id) %>
         <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-            <%= link_to "JOIN", @group, class: "ml-2 rounded-lg py-2 px-3 text-white bg-purple-600 hover:bg-purple-700 inline-block font-medium" %>
+            <%= button_to "JOIN", members_path, method: :post, params: { group_id: group.id },class: "text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" %>
+        </div>
+      <% elsif group.created_by(current_user) %>
+        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+            <%= button_to "DELETE", group_path(group), method: :delete, class: "text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" %>
+        </div>
+      <% else %>
+        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+            <%= button_to "LEAVE", member_path(group.member_id(current_user.id)), method: :delete, params: { group_id: group.id },class: "text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900" %>
         </div>
       <% end %>
     </div>

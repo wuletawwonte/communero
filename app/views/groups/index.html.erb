@@ -7,6 +7,16 @@
         <div class="mx-auto max-w-5xl py-6 md:mb-14 sm:px-6 lg:px-8">
           <div class="w-full">
 
+          
+            <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+                <ul class="flex flex-wrap -mb-px">
+                    <%= render(GroupFilterComponent.new(title: "All groups", link: groups_path)) %>
+                    <%= render(GroupFilterComponent.new(title: "Created by me", link: groups_path(:byme => true))) %>
+                    <%= render(GroupFilterComponent.new(title: "Where I am member", link: groups_path(:memberof => true))) %>
+                </ul>
+            </div>
+
+
             <ul id="groups" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <%= render @groups %>
             </ul>

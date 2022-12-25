@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @groups = Group.all.order(created_at: :desc).page params[:page]
+    @groups = @groups.filter_by_user(current_user) if params[:byme].present?
+    @groups = @groups.filter_by_contains(current_user) if params[:memberof].present?
   end
 
   # GET /groups/1 or /groups/1.json
@@ -35,6 +37,9 @@ class GroupsController < ApplicationController
         format.turbo_stream
         format.html { redirect_to group_url(@group), notice: 'Group was successfully created.' }
       else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('modal', partial: 'modal', locals: { group: @group })
+        end
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -44,8 +49,8 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
+        format.turbo_stream
         format.html { redirect_to group_url(@group), notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @group.errors, status: :unprocessable_entity }
@@ -58,8 +63,8 @@ class GroupsController < ApplicationController
     @group.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@group)}_group") }
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

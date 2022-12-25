@@ -13,7 +13,12 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :group
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :title, :body, presence: true
+  validates :title, uniqueness: true
+
+  def created_by(user)
+    true if self.user == user
+  end
 end

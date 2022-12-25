@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = @group.posts.includes(:user)
+    @posts = @group.posts.includes(:user).order(created_at: :desc).page params[:page]
     @members = User.members_of(@group)
     @post = @group.posts.build
   end
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post = @group.posts.build
   end
 
-  # GET /posts/1/edit
+  # GET groups/1/posts/1/edit
   def edit; end
 
   # POST /posts or /posts.json
@@ -32,8 +32,11 @@ class PostsController < ApplicationController
         format.html { redirect_to group_posts_path(@group), notice: 'Post was successfully created.' }
       else
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@post)}_form", partial: 'form',
-                                                                                     locals: { post: @post })
+          render turbo_stream: turbo_stream.replace(
+            "#{helpers.dom_id(@post)}_form",
+            partial: 'form',
+            locals: { post: @post }
+          )
         end
         format.html { render :index, status: :unprocessable_entity }
       end
@@ -44,8 +47,8 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        format.turbo_stream
+        format.html { redirect_to group_posts_path(@group), notice: 'Post was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -55,11 +58,12 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    @bpost = @post
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@bpost)}_post") }
+      format.html { redirect_to group_posts_url(@group), notice: 'Post was successfully destroyed.' }
     end
   end
 
@@ -77,6 +81,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :group_id)
+    params.require(:post).permit(:title, :body, :group_id, :id)
   end
 end
