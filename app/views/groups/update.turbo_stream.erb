@@ -1,0 +1,7 @@
+<%= turbo_stream.update "group_header" do %>
+  <%= render(HeaderComponent.new(title: @group.name)) do %>
+    <%= link_to 'Edit this group', edit_group_path(@group), data: { "turbo-frame": "modal" }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "modal" %>

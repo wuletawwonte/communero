@@ -1,4 +1,4 @@
-<%= turbo_stream.replace "post_form" do %>
+<%= turbo_stream.update "post_form" do %>
   <%= render "form", post: Post.new %>
 <% end %>
 <%= turbo_stream.replace "#{dom_id(@post)}_post" do %>
