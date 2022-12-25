@@ -56,13 +56,13 @@
                     </button>
                   </div>
 
-                  <div data-avatar-target="dropdown" class="invisible absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                  <div data-avatar-target="dropdown" class="invisible absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none bg-white dark:bg-gray-700 z-20" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                     <!-- Active: "bg-gray-100", Not Active: "" -->
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-white" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
 
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                    <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-300 dark:hover:text-white" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
 
-                    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700", form_class: "px-0 w-full" %>
+                    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "block text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-600 w-full", form_class: "px-0 w-full dark:hover:bg-gray-600" %>
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="hidden md:hidden dark:bg-gray-900 z-20" data-navigation-target="mobilemenu">
+        <div class="hidden md:hidden dark:bg-gray-900 z-50" data-navigation-target="mobilemenu">
           <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Groups</a>
