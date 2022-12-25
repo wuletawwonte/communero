@@ -37,7 +37,9 @@ class GroupsController < ApplicationController
         format.turbo_stream
         format.html { redirect_to group_url(@group), notice: 'Group was successfully created.' }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace('modal', partial: "modal", locals: { group: @group }) }        
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace('modal', partial: 'modal', locals: { group: @group })
+        end
         format.html { render :new, status: :unprocessable_entity }
       end
     end

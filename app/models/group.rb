@@ -18,8 +18,8 @@ class Group < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  scope :filter_by_user, -> (user) { where(user_id: user.id) }
-  scope :filter_by_contains, -> (user) { joins(:members).where(members: { user_id: user.id }) }
+  scope :filter_by_user, ->(user) { where(user_id: user.id) }
+  scope :filter_by_contains, ->(user) { joins(:members).where(members: { user_id: user.id }) }
 
   def members_count
     "#{members.count} Members"
@@ -34,7 +34,7 @@ class Group < ApplicationRecord
   end
 
   def not_member(user_id)
-    self.members.where(user_id:).blank?
+    members.where(user_id:).blank?
   end
 
   private

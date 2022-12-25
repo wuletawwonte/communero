@@ -2,7 +2,11 @@
     <div class="flex items-center space-x-4">
       <div class="flex-1 min-w-0">
           <p class="text-lg font-medium text-gray-900 truncate dark:text-white">
-            <%= link_to group.name, group_posts_path(group), class: "text-blue-600 hover:text-blue-700" %>
+            <% if group.not_member(current_user) %>
+              <%= group.name %>
+            <% else %>
+              <%= link_to group.name, group_posts_path(group), class: "text-blue-600 hover:text-blue-700" %>
+            <% end %>
             <% if group.created_by(current_user) %>
               <span class="text-xs text-gray-500 truncate dark:text-gray-600">Created by you</span>
             <% end %>
