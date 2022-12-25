@@ -34,7 +34,11 @@ class Group < ApplicationRecord
   end
 
   def not_member(user_id)
-    members.where(user_id:).blank?
+    self.members.where(user_id:).blank?
+  end
+
+  def member_id(user_id)
+    self.members.where(members: {user_id: user_id} ).pluck(:id)
   end
 
   private

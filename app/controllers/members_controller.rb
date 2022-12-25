@@ -55,11 +55,18 @@ class MembersController < ApplicationController
 
   # DELETE /members/1 or /members/1.json
   def destroy
+    @group = Group.find(params[:group_id])
     @member.destroy
 
     respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "#{helpers.dom_id(@group)}_group",
+          partial: 'groups/group',
+          locals: { group: @group }
+        )
+      end
       format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
