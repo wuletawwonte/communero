@@ -46,10 +46,10 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'block', error_class: 'text-red-500'
-    b.use :input, class: 'shadow appearance-none border border-gray-300 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 leading-6 transition-colors duration-200 ease-in-out dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', error_class: 'border-red-500', valid_class: 'border-green-400'
+    b.use :label, class: 'block dark:text-white', error_class: 'text-red-500'
+    b.use :input, class: 'shadow appearance-none border border-gray-300 dark:border-gray-600 rounded w-full py-2 px-3 bg-white focus:outline-none focus:ring-0 focus:border-blue-500 leading-6 transition-colors duration-200 ease-in-out dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', error_class: 'border-red-500', valid_class: 'border-green-400'
     b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-red-600 text-xs italic' }
-    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 italic text-gray-600 text-xs' }
+    b.use :hint, wrap_with: { tag: 'p', class: 'mt-2 italic text-gray-600 text-xs dark:text-white' }
   end
 
   # vertical input for boolean (aka checkboxes)

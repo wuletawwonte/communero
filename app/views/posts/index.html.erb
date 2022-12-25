@@ -22,7 +22,7 @@
                   <ul class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <% @members.each do |member| %>
 
-                      <li>
+                      <li class="py-2">
                           <div class="flex items-center space-x-2">
                             <div class="min-w-0">
                               <%= render(UserIconComponent.new(initial: member.initials, color: member.avatar_color)) %>
