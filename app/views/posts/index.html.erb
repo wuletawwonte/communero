@@ -1,8 +1,11 @@
-<div id="group_header">
-  <%= render(HeaderComponent.new(title: @group.name)) do %>
-    <%= link_to 'Edit this group', edit_group_path(@group), data: { "turbo-frame": "modal" }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  <% end %>
-</div>
+
+  <div id="group_header">
+    <%= render(HeaderComponent.new(title: @group.name)) do %>
+      <% if @group.created_by(current_user) %>
+        <%= link_to 'Edit this group', edit_group_path(@group), data: { "turbo-frame": "modal" }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <% end %>
+    <% end %>
+  </div>
 
 <main class="mx-auto md:w-full w-full flex">
 
