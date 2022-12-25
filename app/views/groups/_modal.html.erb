@@ -11,17 +11,6 @@
               <div class="px-6 py-6 lg:px-8">
                   <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add group</h3>
                   <%= simple_form_for group, html: { class: "space-y-6" } do |form| %>
-                    <% if group.errors.any? %>
-                      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-                        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
-
-                        <ul>
-                          <% group.errors.each do |error| %>
-                            <li><%= error.full_message %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
                     <%= form.input :name, hint: "People will see this name before joining your gruop" %>
                     <%= form.input :description %>
                     <%= form.button :submit %>
