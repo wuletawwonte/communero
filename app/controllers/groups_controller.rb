@@ -5,6 +5,8 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @groups = Group.all.order(created_at: :desc).page params[:page]
+    @groups = @groups.filter_by_user(current_user) if params[:byme].present?
+    @groups = @groups.filter_by_contains(current_user) if params[:memberof].present?
   end
 
   # GET /groups/1 or /groups/1.json
