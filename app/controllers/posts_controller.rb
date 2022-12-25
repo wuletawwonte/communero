@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     @post = @group.posts.build
   end
 
-  # GET /posts/1/edit
+  # GET groups/1/posts/1/edit
   def edit; end
 
   # POST /posts or /posts.json
@@ -32,8 +32,10 @@ class PostsController < ApplicationController
         format.html { redirect_to group_posts_path(@group), notice: 'Post was successfully created.' }
       else
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@post)}_form", partial: 'form',
-                                                                                     locals: { post: @post })
+          render turbo_stream: turbo_stream.replace(
+            "#{helpers.dom_id(@post)}_form", 
+            partial: 'form',
+            locals: { post: @post })
         end
         format.html { render :index, status: :unprocessable_entity }
       end
@@ -44,8 +46,8 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
+        format.turbo_stream
+        format.html { redirect_to group_posts_path(@group), notice: 'Post was successfully updated.' }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -77,6 +79,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :group_id)
+    params.require(:post).permit(:title, :body, :group_id, :id)
   end
 end
