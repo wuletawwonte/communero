@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-[live link coming soon](https://linktr.ee/wuletawwonte)
+[live link coming soon](https://communero-production.up.railway.app/)
 
 ## Getting Started
 
