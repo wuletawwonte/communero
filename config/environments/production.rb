@@ -92,4 +92,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_cable.allowed_request_origins = [/https:\/\/*/]
+
+  config.hosts << "communero-production.up.railway.app"
 end
