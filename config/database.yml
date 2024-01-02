@@ -82,4 +82,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  <<: *default
+  database: communero_production
+  username: communero
   url: <%= ENV["DATABASE_URL"] %>
