@@ -1,4 +1,4 @@
-# Communero - A take home project for Simplero Internship
+# Communero
 
 > A simple lightweight community platform that allows people to create & join `Groups` with the feature of creating `Posts` & `Comments` on the `Groups` created.
 
@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-[live link coming soon](https://communero-production.up.railway.app/)
+[live link](https://communero-web.onrender.com)
 
 ## Getting Started
 
