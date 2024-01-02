@@ -83,7 +83,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
   database: communero_production
   username: communero
-  password: <%= ENV["COMMUNERO_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
