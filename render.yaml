@@ -1,14 +1,17 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: communero-db
+    databaseName: communero_production
+    user: communero
+    plan: free
 
 services:
   - type: web
     name: mysite
-    env: ruby
+    runtime: ruby
+    plan: free
     buildCommand: './bin/render-build.sh'
-    startCommand: 'bundle exec puma -C config/puma.rb'
+    # preDeployCommand: "./bin/rails db:migrate" # preDeployCommand only available on paid instance types
+    startCommand: './bin/rails server'
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -16,3 +19,5 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # sensible default
