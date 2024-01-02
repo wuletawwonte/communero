@@ -24,7 +24,7 @@ default: &default
 development:
   <<: *default
   username: postgres
-  database: simplero_take_home_test_rails_development
+  database: communero_development
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,7 +58,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: simplero_take_home_test_rails_test
+  database: communero_test
   username: postgres
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -84,6 +84,6 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  database: railwayapp_production
-  username: railwayapp
-  password: <%= ENV["RAILWAYAPP_DATABASE_PASSWORD"] %>
+  database: communero_production
+  username: communero
+  password: <%= ENV["COMMUNERO_DATABASE_PASSWORD"] %>
