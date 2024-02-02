@@ -68,7 +68,7 @@ group :test do
 end
 
 gem 'cancancan'
-gem 'devise', '~> 4.8'
+gem 'devise', '~> 4.9'
 gem 'kaminari'
 gem 'simple_form'
 gem 'simple_form-tailwind'
