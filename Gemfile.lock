@@ -174,7 +174,7 @@ GEM
     nokogiri (1.16.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pg (1.5.4)
+    pg (1.5.5)
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
